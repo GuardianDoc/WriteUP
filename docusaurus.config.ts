@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'JTZ',
-  tagline: 'JTZ 的博客',
+  tagline: '',
   favicon: 'img/favicon.jpg',
 
   // Set the production url of your site here
@@ -75,11 +75,28 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'ctfSidebar',
+          position: 'left',
+          label: 'CTF',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'helpSidebar',
           position: 'left',
           label: 'Help',
         },
         {to: '/docs/tags/', label: 'Tags', position: 'right'},
+        // {to: '/docs/intro', label: '关于我', position: 'right'},
+        {
+          label: 'MISC',
+          position: 'right',
+          items: [
+            {
+              href: 'https://pan.baidu.com/s/1PNvMPQsc-F70Lyk7ZNsRrA?pwd=f228',
+              label: '资源',
+            }
+          ]
+        },
         {
           href: 'https://github.com/Guardian-JTZ',
           label: 'GitHub',
@@ -131,6 +148,10 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    tableOfContents: {
+      minHeadingLevel: 2,
+      maxHeadingLevel: 5,
     },
   } satisfies Preset.ThemeConfig,
 };

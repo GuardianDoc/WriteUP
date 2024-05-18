@@ -2,5 +2,4 @@
 sidebar_position: 1
 ---
 
-# 介绍
-## 资源
+# CTF
