@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkguardian_jtz_github_io=self.webpackChunkguardian_jtz_github_io||[]).push([[223],{7943:t=>{t.exports=JSON.parse('{"tag":{"label":"123","permalink":"/docs/tags/123","allTagsPath":"/docs/tags","count":1,"items":[{"id":"box/intro","title":"Test","description":"","permalink":"/docs/box/intro"}],"unlisted":false}}')}}]);
