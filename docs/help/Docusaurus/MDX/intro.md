@@ -113,7 +113,8 @@ import ProgressBar from '@site/src/components/ProgressBar/ProgressBar';
         ![20240519113942](https://raw.githubusercontent.com/Guardian-JTZ/Image/main/img/20240519113942.png)
     </TabItem>
     <TabItem value="js" label="GithubHeatmap.js">
-    ```js title="src/components/GithubHeatmap/GithubHeatmap.js"
+    ```js
+    // src/components/GithubHeatmap/GithubHeatmap.js
     import React from 'react';
     import GitHubCalendar from 'react-github-calendar';
 
@@ -133,6 +134,40 @@ import ProgressBar from '@site/src/components/ProgressBar/ProgressBar';
     </TabItem>
 
 
+</Tabs>
+
+### 图标
+> 可以直接从 [Iconify](https://docusaurus.community/knowledge/design/icons/iconify/) 进行查看
+
+
+<Tabs>
+  <TabItem value="示例" label="示例" default>
+    <IIcon icon="mdi:github" height="25" /> This is a GitHub icon.
+  </TabItem>
+  <TabItem value="配置" label="配置">
+    ```bash
+    npm install --save @iconify/react
+    ```
+
+    ```js
+    // src/theme/MDXComponents.js
+    import React from 'react';
+    // Import the original mapper
+    import MDXComponents from '@theme-original/MDXComponents';
+    import { Icon } from '@iconify/react'; // Import the entire Iconify library.
+
+    export default {
+      // Re-use the default mapping
+      IIcon: Icon, // Make the iconify Icon component available in MDX as <icon />.
+    };
+    ```
+  </TabItem>
+  <TabItem value="Use" label="使用">
+    ```mdx
+    // test.mdx
+    <IIcon icon="mdi:github" height="25" /> This is a GitHub icon.
+    ```
+  </TabItem>
 </Tabs>
 
 
