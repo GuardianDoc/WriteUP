@@ -29,7 +29,7 @@ const config: Config = {
   },
 
   plugins: [
-    
+    'plugin-image-zoom',
   ],
 
   presets: [

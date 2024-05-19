@@ -5,6 +5,10 @@
   border-radius: 50px;
   overflow: hidden; /* 确保内容不溢出 */
   margin: 50px 0;
+  
+  border-radius: 4px;
+  transition: 0.4s linear;
+  transition-property: width, background-color;
 }
 
 .progress-bar__filler {

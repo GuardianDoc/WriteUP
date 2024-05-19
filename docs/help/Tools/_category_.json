@@ -1,0 +1,8 @@
+{
+  "label": "Tools",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "存放各种推荐的工具、插件以及使用方法"
+  }
+}

@@ -33,7 +33,7 @@ const ProgressBar = ({ completed, color = 'green' }) => {
     margin: '50px 0'
   };
 
-  const fillerStyles = {
+  const fillerStyles = { 
     height: '100%',
     width: `${width}%`,
     backgroundColor: color,

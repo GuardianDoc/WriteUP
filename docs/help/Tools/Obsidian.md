@@ -2,7 +2,7 @@
 sidebar_position: 1
 tags: [obsidian, LifeTool]
 ---
-# 配置文档
+# Obsidian
 
 ## 介绍
 使用了很多的笔记软件在线的或者离线的, 最终还是前往 `Obsidian` 的配置, 虽然离线会导致无法分享, 但是我会通过 Github 同步以及本网站尽可能的分享一些内容
