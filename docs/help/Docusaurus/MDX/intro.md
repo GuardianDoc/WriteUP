@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 import ProgressBar from '@site/src/components/ProgressBar/ProgressBar';
 
 # MDX
-## 扩展
+## 修正使用
 ### 自定义进度条
 > 使用 GPT 帮助自己实现了 MDX 进度条
 
@@ -135,7 +135,6 @@ import ProgressBar from '@site/src/components/ProgressBar/ProgressBar';
 
 
 </Tabs>
-
 ### 图标
 > 可以直接从 [Iconify](https://docusaurus.community/knowledge/design/icons/iconify/) 进行查看
 
@@ -158,6 +157,7 @@ import ProgressBar from '@site/src/components/ProgressBar/ProgressBar';
 
     export default {
       // Re-use the default mapping
+      ...MDXComponents,
       IIcon: Icon, // Make the iconify Icon component available in MDX as <icon />.
     };
     ```
@@ -169,6 +169,7 @@ import ProgressBar from '@site/src/components/ProgressBar/ProgressBar';
     ```
   </TabItem>
 </Tabs>
+
 
 
 ## 参考链接
