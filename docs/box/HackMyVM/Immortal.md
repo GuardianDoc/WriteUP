@@ -1,7 +1,8 @@
 ---
 sidebar_position: 3
-tags: [Easy, Linux, FTP, SSH, Credential Cracking, 文件上传, SUDO, .service]
+tags: [Easy, Linux, FTP, SSH, 密码破解-账号, 文件上传, SUDO, .service]
 title: Immortal
+description: Immortal
 ---
 # Immortal
 ## 端口扫描

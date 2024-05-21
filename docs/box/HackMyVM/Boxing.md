@@ -2,6 +2,7 @@
 sidebar_position: 1
 tags: [Easy, Linux, SSRF, 命令执行, 密码破解, 通配符利用, 定时任务, 逻辑漏洞]
 title: Boxing
+description: Boxing
 ---
 # Boxing
 ## 端口扫描
