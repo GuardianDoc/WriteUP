@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkguardian_jtz_github_io=self.webpackChunkguardian_jtz_github_io||[]).push([[8538],{55840:i=>{i.exports=JSON.parse('{"tag":{"label":"IDOR","permalink":"/docs/tags/idor","allTagsPath":"/docs/tags","count":1,"items":[{"id":"box/HackMyVM/Quick3","title":"Quick3","description":"Quick3","permalink":"/docs/box/HackMyVM/Quick3"}],"unlisted":false}}')}}]);
