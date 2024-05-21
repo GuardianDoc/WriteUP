@@ -104,6 +104,12 @@ import ProgressBar from '@site/src/components/ProgressBar/ProgressBar';
     }  
     ```
     </TabItem>
+    <TabItem value="2" label="使用">
+    ```md
+    import ProgressBar from '@site/src/components/ProgressBar/ProgressBar';
+    <ProgressBar completed={60} color="blue" />
+    ```
+    </TabItem>
 </Tabs>
 
 ### Github 热力图

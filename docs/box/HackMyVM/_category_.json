@@ -1,0 +1,8 @@
+{
+  "label": "HackMyVM",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "类似于于 VulnHub 的靶场, 我感觉二者并没有什么差别, 只不过 HackmyVm 更新比 VulnHub 更新比较频繁"
+  }
+}
