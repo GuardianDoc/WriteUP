@@ -1,7 +1,9 @@
 ---
 sidebar_position: 2
 tags: [流量分析]
-title: NewStarCTF 公开赛赛道 WebShell
+title: "NewStarCTF 公开赛赛道 WebShell!"
+sidebar_label: "NewStarCTF 公开赛赛道 WebShell!"
+description: 蚁剑的流量分析
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

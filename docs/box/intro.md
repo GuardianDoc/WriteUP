@@ -7,6 +7,7 @@ description: 记录各种 BOX 的 WP
 - [ ] HackTheBox
 - [ ] TryHackMe 
 - [ ] [HackMyVM](https://hackmyvm.eu/login/) : 免费的虚拟机, 如果需要的话可以在 [共享资料/CTF/HackMyVM](https://pan.baidu.com/s/1PNvMPQsc-F70Lyk7ZNsRrA?pwd=f228) 下载虚拟机
+- [ ] [VulnHub](https://www.vulnhub.com/) : 免费的虚拟机, 就是更新不太频繁了, 不太推荐
 
 ## HackMyVm 使用
 - 默认使用 VirtualBox, 因为是国外网盘,下载速度也比较慢因此如果要玩建议提前一天下载, 或者可以访问我的百度网盘下载

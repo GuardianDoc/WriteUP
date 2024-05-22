@@ -1,0 +1,8 @@
+{
+  "label": "VulnHub",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "VulnHub 上面有很多开源的渗透虚拟机, 不过更新相对没有那么频繁"
+  }
+}

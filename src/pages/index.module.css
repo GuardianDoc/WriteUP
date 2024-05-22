@@ -8,6 +8,11 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  color: white; 
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url(./img/test.png);
+    background-size: cover;
 }
 
 @media screen and (max-width: 996px) {
