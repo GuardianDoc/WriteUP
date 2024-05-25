@@ -8,7 +8,7 @@ const config: Config = {
   favicon: 'img/favicon.jpg',
 
   // Set the production url of your site here
-  url: 'https://guardian-jtz.github.io/',
+  url: 'https://writeup.guardian-jtz.top/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -64,7 +64,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'boxSidebar',
           position: 'left',
-          label: 'Box',
+          label: '📦 Box',
         },
         {
           type: 'docSidebar',
@@ -78,8 +78,20 @@ const config: Config = {
           position: 'left',
           label: 'Help',
         },
-        {to: '/docs/tags/', label: 'Tags', position: 'right'},
         // {to: '/docs/intro', label: '关于我', position: 'right'},
+        {
+          label: 'Blog',
+          position: 'right',
+          items: [
+            {
+              to: '/docs/tags/',
+              label: 'Tags',
+            },{
+              to: 'https://blog.guardian-jtz.top/',
+              label: '主站',
+            }
+          ]
+        },
         {
           label: 'MISC',
           position: 'right',
