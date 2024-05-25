@@ -1,0 +1,36 @@
+---
+sidebar_position: 5
+tags: [Easy, Linux, 信息泄露, 文件上传, SUID]
+title: RootMe
+---
+# RootMe
+## 端口扫描
+![20240525124045](https://raw.githubusercontent.com/Guardian-JTZ/Image/main/img/20240525124045.png)
+
+## 80
+![20240525124055](https://raw.githubusercontent.com/Guardian-JTZ/Image/main/img/20240525124055.png)
+
+我们发现一个新的页面 panel 访问发现其实是一个文件上传位置
+
+![20240525124107](https://raw.githubusercontent.com/Guardian-JTZ/Image/main/img/20240525124107.png)
+
+又发现一个 `http://10.10.230.100/uploads/`  这应该是文件上传的位置， 我们下载一个 php reverse shell 上传到目标进行执行, 
+发现文件上传存在过滤不允许 php 后缀上传， 但是发现可以上传 phtml 后缀文件
+
+## 后渗透
+### www-data
+![20240525124130](https://raw.githubusercontent.com/Guardian-JTZ/Image/main/img/20240525124130.png)
+
+### www-data —> root
+
+查找发现存在 SUID 特殊文件, 直接 [GTFOBins](https://gtfobins.github.io/gtfobins/python/#suid)
+
+![20240525124146](https://raw.githubusercontent.com/Guardian-JTZ/Image/main/img/20240525124146.png)
+
+![20240525124231](https://raw.githubusercontent.com/Guardian-JTZ/Image/main/img/20240525124231.png)
+
+## 扩展
+### 备份文件
+在查看系统目录时发现， 网站下存在一个 website.zip 文件， 如果我们在目录扫描中发现此备份文件, 我们就可以直接下载进行分析
+
+![20240525124250](https://raw.githubusercontent.com/Guardian-JTZ/Image/main/img/20240525124250.png)

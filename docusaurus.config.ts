@@ -41,6 +41,7 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
+          showLastUpdateTime: true,
         },
         theme: {
           customCss: './src/css/custom.css',
