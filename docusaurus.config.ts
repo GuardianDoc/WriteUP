@@ -74,9 +74,9 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'helpSidebar',
+          sidebarId: 'servicesSidebar',
           position: 'left',
-          label: 'Help',
+          label: '漏洞研究',
         },
         // {to: '/docs/intro', label: '关于我', position: 'right'},
         {
