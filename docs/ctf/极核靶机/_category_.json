@@ -1,0 +1,8 @@
+{
+  "label": "极核靶机",
+  "position": 99,
+  "link": {
+    "type": "generated-index",
+    "description": "不知道哪里冒出来的靶场, 感觉就是复现漏洞的"
+  }
+}

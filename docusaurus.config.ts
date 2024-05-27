@@ -74,7 +74,7 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
-          sidebarId: 'servicesSidebar',
+          sidebarId: 'studySidebar',
           position: 'left',
           label: '漏洞研究',
         },
@@ -151,7 +151,12 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
+      additionalLanguages: [
+        'java',
+        'bash',
+        'TypeScript',
+      ],
+      theme: prismThemes.dracula,
       darkTheme: prismThemes.dracula,
     },
     tableOfContents: {
