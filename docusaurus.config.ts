@@ -38,6 +38,10 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
+          admonitions: {
+            keywords: ['question', 'podcast', 'newsletter', 'book'],
+            extendDefaults: true,
+          },
         },
         blog: {
           showReadingTime: true,
@@ -155,6 +159,7 @@ const config: Config = {
         'java',
         'bash',
         'TypeScript',
+        'Go',
       ],
       theme: prismThemes.dracula,
       darkTheme: prismThemes.dracula,
