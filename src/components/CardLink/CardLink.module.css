@@ -44,3 +44,10 @@
     max-width: 30px;
     border-radius: 50%;
 }
+
+.divider {
+    flex: 0 0 1px; /* 固定1px的宽度 */
+    height: 80%; /* 虚线的高度，可以根据需要调整 */
+    border-left: 1px dashed #d3d3d3; /* 设置更细和颜色更淡的虚线 */
+    margin: 0 1rem; /* 设置左右间距 */
+}

@@ -78,9 +78,15 @@ const config: Config = {
         },
         {
           type: 'docSidebar',
+          sidebarId: 'componentsSidebar',
+          position: 'left',
+          label: '组件漏洞',
+        },
+        {
+          type: 'docSidebar',
           sidebarId: 'studySidebar',
           position: 'left',
-          label: '漏洞研究',
+          label: '📚 漏洞研究',
         },
         // {to: '/docs/intro', label: '关于我', position: 'right'},
         {
@@ -160,6 +166,7 @@ const config: Config = {
         'bash',
         'TypeScript',
         'Go',
+        'PHP',
       ],
       theme: prismThemes.dracula,
       darkTheme: prismThemes.dracula,

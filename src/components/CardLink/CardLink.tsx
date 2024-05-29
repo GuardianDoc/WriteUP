@@ -40,6 +40,7 @@ const CardLink: React.FC<CardProps> = ({
     return (
         <div className={clsx("cardContainer", styles.cardContainer)} onClick={handleClick}>
             <img className={clsx("img", styles.cardImg)} src={imageUrl} alt={title} />
+            <div className={clsx("divider", styles.divider)}></div>
             <div className={clsx("content", styles.content)}>
                 <h2>{title}</h2>
                 <p>{truncatedDescription}
