@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkguardian_jtz_github_io=self.webpackChunkguardian_jtz_github_io||[]).push([[3882],{80927:a=>{a.exports=JSON.parse('{"tag":{"label":"Capabilities","permalink":"/docs/tags/capabilities","allTagsPath":"/docs/tags","count":1,"items":[{"id":"box/TryHackMe/38","title":"kiba","description":"kiba","permalink":"/docs/tryhackme/38"}],"unlisted":false}}')}}]);

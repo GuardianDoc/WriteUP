@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkguardian_jtz_github_io=self.webpackChunkguardian_jtz_github_io||[]).push([[7508],{78591:s=>{s.exports=JSON.parse('{"tag":{"label":"PostgreSQL","permalink":"/docs/tags/postgre-sql","allTagsPath":"/docs/tags","count":1,"items":[{"id":"box/TryHackMe/53","title":"Poster","description":"Poster","permalink":"/docs/tryhackme/53"}],"unlisted":false}}')}}]);

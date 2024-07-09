@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkguardian_jtz_github_io=self.webpackChunkguardian_jtz_github_io||[]).push([[5082],{79690:a=>{a.exports=JSON.parse('{"tag":{"label":"CouchDB","permalink":"/docs/tags/couch-db","allTagsPath":"/docs/tags","count":1,"items":[{"id":"box/TryHackMe/55","title":"Couch","description":"Couch","permalink":"/docs/tryhackme/55"}],"unlisted":false}}')}}]);

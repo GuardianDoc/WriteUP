@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkguardian_jtz_github_io=self.webpackChunkguardian_jtz_github_io||[]).push([[9299],{47628:a=>{a.exports=JSON.parse('{"tag":{"label":"Borg","permalink":"/docs/tags/borg","allTagsPath":"/docs/tags","count":1,"items":[{"id":"box/TryHackMe/25","title":"Cyborg","description":"Cyborg","permalink":"/docs/tryhackme/25"}],"unlisted":false}}')}}]);
